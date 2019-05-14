@@ -1,53 +1,102 @@
 package br.com.sankhya.dominio;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.xml.crypto.Data;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="tb_filme")
 public class Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer codContrato;
-	private Data data;
+
+	private Integer codCliente;
+	private String nome;
+	private String email;
+	private String telefone;
+	private String	cpf;
+	private Date nascimento;
+	private BigDecimal rendaMensal;
 	
 	public Cliente() {
 		
 	}
-	
-	public Cliente(Integer codContrato, Data data) {
+
+	public Cliente(Integer codCliente, String nome, String email, String telefone, String cpf, Date nascimento,
+			BigDecimal rendaMensal) {
 		super();
-		this.codContrato = codContrato;
-		this.data = data;
+		this.codCliente = codCliente;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.cpf = cpf;
+		this.nascimento = nascimento;
+		this.rendaMensal = rendaMensal;
 	}
 
+	public Integer getCodCliente() {
+		return codCliente;
+	}
+
+	public void setCodCliente(Integer codCliente) {
+		this.codCliente = codCliente;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public Date getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(Date nascimento) {
+		this.nascimento = nascimento;
+	}
+
+	public BigDecimal getRendaMensal() {
+		return rendaMensal;
+	}
+
+	public void setRendaMensal(BigDecimal rendaMensal) {
+		this.rendaMensal = rendaMensal;
+	}
 	
-	
-	public Integer getCodContrato() {
-		return codContrato;
-	}
-
-	public void setCodContrato(Integer codContrato) {
-		this.codContrato = codContrato;
-	}
-
-	public Data getData() {
-		return data;
-	}
-
-	public void setData(Data data) {
-		this.data = data;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codContrato == null) ? 0 : codContrato.hashCode());
+		result = prime * result + ((codCliente == null) ? 0 : codCliente.hashCode());
 		return result;
 	}
 
@@ -60,19 +109,17 @@ public class Cliente implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Cliente other = (Cliente) obj;
-		if (codContrato == null) {
-			if (other.codContrato != null)
+		if (codCliente == null) {
+			if (other.codCliente != null)
 				return false;
-		} else if (!codContrato.equals(other.codContrato))
+		} else if (!codCliente.equals(other.codCliente))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [codContrato=" + codContrato + ", data=" + data + "]";
+		return "Cliente [codCliente=" + codCliente + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone
+				+ ", cpf=" + cpf + ", nascimento=" + nascimento + ", rendaMensal=" + rendaMensal + "]";
 	}
-	
-	
-	
 }
