@@ -23,11 +23,19 @@ public class Item implements Serializable{
 		super();
 	}
 
-	public Item(Integer codItem, Integer ordem) {
+
+
+	public Item(Integer codItem, Integer ordem, Pacote pacote, Passeio passeio) {
 		super();
 		this.codItem = codItem;
 		this.ordem = ordem;
+		this.pacote = pacote;
+		pacote.addItem(this);
+		this.passeio = passeio;
+		passeio.addItem(this);
 	}
+
+
 
 	public Integer getCodItem() {
 		return codItem;

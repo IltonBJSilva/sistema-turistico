@@ -32,6 +32,7 @@ public class Pacote implements Serializable {
 		this.codPacote = codPacote;
 		this.nome = nome;
 		this.diarias = diarias;
+		hotel.addPacote(this);
 		
 	}
 

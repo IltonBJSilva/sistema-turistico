@@ -28,12 +28,20 @@ private static final long serialVersionUID = 1L;
 		
 	}
 	
-	public Contrato(Integer codContrato, Date data) {
+
+	
+	public Contrato(Integer codContrato, Date data, Cliente cliente, Pacote pacote) {
 		super();
 		this.codContrato = codContrato;
 		this.data = data;
+		this.cliente = cliente;
+		cliente.addContrato(this);
+		this.pacote = pacote;
+		pacote.addContrato(this);
 	}
-	
+
+
+
 	public Integer getCodContrato() {
 		return codContrato;
 	}
