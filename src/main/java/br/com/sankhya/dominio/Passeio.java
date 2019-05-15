@@ -60,6 +60,23 @@ public class Passeio implements Serializable{
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+	
+	public List<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
+	}
+	
+	public void addItem(Item x) {
+		this.itens.add(x);
+		x.setPasseio(this);
+	}
+	
+	public void removeItem(Item x) {
+		this.itens.remove(x);
+	}
 
 	@Override
 	public int hashCode() {

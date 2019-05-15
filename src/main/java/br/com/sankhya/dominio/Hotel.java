@@ -63,9 +63,25 @@ public class Hotel implements Serializable{
 	public void setDiaria(BigDecimal diaria) {
 		this.diaria = diaria;
 	}
+	
+	public List<Pacote> getPacotes() {
+		return pacotes;
+	}
 
+	public void setPacotes(List<Pacote> pacotes) {
+		this.pacotes = pacotes;
+	}
 	
+	public void addPacote(Pacote x) {
+		this.pacotes.add(x);
+		x.setHotel(this);
+	}
 	
+	public void removePacote(Pacote x) {
+		this.pacotes.remove(x);
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

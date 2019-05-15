@@ -44,6 +44,22 @@ public class Item implements Serializable{
 	public void setOrdem(Integer ordem) {
 		this.ordem = ordem;
 	}
+	
+	public Pacote getPacote() {
+		return pacote;
+	}
+
+	public void setPacote(Pacote pacote) {
+		this.pacote = pacote;
+	}
+
+	public Passeio getPasseio() {
+		return passeio;
+	}
+
+	public void setPasseio(Passeio passeio) {
+		this.passeio = passeio;
+	}
 
 	@Override
 	public int hashCode() {

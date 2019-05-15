@@ -12,7 +12,7 @@ public class Pacote implements Serializable {
 
 	private Integer codPacote;
 	private String nome;
-	private Integer diaria;
+	private Integer diarias;
 
 	@OneToMany(mappedBy = "contrato")
 	private List<Contrato> contratos;
@@ -27,11 +27,12 @@ public class Pacote implements Serializable {
 
 	}
 
-	public Pacote(Integer codPacote, String nome, Integer diaria) {
+	public Pacote(Integer codPacote, String nome, Integer diarias) {
 		super();
 		this.codPacote = codPacote;
 		this.nome = nome;
-		this.diaria = diaria;
+		this.diarias = diarias;
+		
 	}
 
 	public Integer getCodPacote() {
@@ -51,21 +52,67 @@ public class Pacote implements Serializable {
 	}
 
 	public Integer getDiaria() {
-		return diaria;
+		return diarias;
 	}
 
-	public void setDiaria(Integer diaria) {
-		this.diaria = diaria;
+	public void setDiaria(Integer diarias) {
+		this.diarias = diarias;
+	}
+	
+	public List<Contrato> getContratos() {
+		return contratos;
 	}
 
-	public BigDecimal precoTotal() {
-		return new BigDecimal(20);
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
 	}
 
-	public BigDecimal precoPasseio() {
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+	public List<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
+	}
+	
+	public void addContrato(Contrato x) {
+		this.contratos.add(x);
+		x.setPacote(this);
+	}
+	
+	public void removeContrato(Contrato x) {
+		this.contratos.remove(x);
+	}
+	
+	public void addItem(Item x) {
+		this.itens.add(x);
+		x.setPacote(this);
+	}
+	
+	public void removeItem(Item x) {
+		this.itens.remove(x);
+	}
+	
+	public BigDecimal precoPasseios() {
 		return new BigDecimal(30);
 	}
-
+	
+	public BigDecimal precoTotal() {
+		BigDecimal resultado = new BigDecimal("0.00");
+		resultado = resultado.add(precoPasseios());
+		BigDecimal diarias = new BigDecimal(this.diarias);
+		resultado = resultado.add(diarias.multiply(hotel.getDiaria()));
+		return new BigDecimal(20);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,6 +140,6 @@ public class Pacote implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Pacote [codPacote=" + codPacote + ", nome=" + nome + ", diaria=" + diaria + "]";
+		return "Pacote [codPacote=" + codPacote + ", nome=" + nome + ", diaria=" + diarias + "]";
 	}
 }

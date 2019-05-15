@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_filme")
+@Table(name="tb_Contrato")
 public class Contrato implements Serializable{
 private static final long serialVersionUID = 1L;
 
@@ -33,8 +33,6 @@ private static final long serialVersionUID = 1L;
 		this.codContrato = codContrato;
 		this.data = data;
 	}
-
-	
 	
 	public Integer getCodContrato() {
 		return codContrato;
@@ -44,14 +42,28 @@ private static final long serialVersionUID = 1L;
 		this.codContrato = codContrato;
 	}
 
-
-
 	public Date getData() {
 		return data;
 	}
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Pacote getPacote() {
+		return pacote;
+	}
+
+	public void setPacote(Pacote pacote) {
+		this.pacote = pacote;
 	}
 
 	@Override
@@ -82,6 +94,5 @@ private static final long serialVersionUID = 1L;
 	@Override
 	public String toString() {
 		return "Cliente [codContrato=" + codContrato + ", data=" + data + "]";
-	}
-	
+	}	
 }

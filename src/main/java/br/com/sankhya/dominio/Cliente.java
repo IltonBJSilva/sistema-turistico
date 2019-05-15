@@ -96,7 +96,24 @@ public class Cliente implements Serializable{
 	public void setRendaMensal(BigDecimal rendaMensal) {
 		this.rendaMensal = rendaMensal;
 	}
+
+	public List<Contrato> getContratos() {
+		return contratos;
+	}
+
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
+	}
 	
+	public void addContrato(Contrato x) {
+		this.contratos.add(x);
+		x.setCliente(this);
+	}
+	
+	public void removeContrato(Contrato x) {
+		this.contratos.remove(x);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
