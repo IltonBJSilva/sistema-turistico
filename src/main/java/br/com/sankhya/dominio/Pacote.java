@@ -2,16 +2,29 @@ package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
-public class Pacote implements Serializable{
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+public class Pacote implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer codPacote;
-	private String 	nome;
+	private String nome;
 	private Integer diaria;
-	
+
+	@OneToMany(mappedBy = "contrato")
+	private List<Contrato> contratos;
+
+	@ManyToOne
+	private Hotel hotel;
+
+	@OneToMany(mappedBy = "item")
+	private List<Item> itens;
+
 	public Pacote() {
-		
+
 	}
 
 	public Pacote(Integer codPacote, String nome, Integer diaria) {
@@ -48,11 +61,11 @@ public class Pacote implements Serializable{
 	public BigDecimal precoTotal() {
 		return new BigDecimal(20);
 	}
-	
+
 	public BigDecimal precoPasseio() {
 		return new BigDecimal(30);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -3,12 +3,14 @@ package br.com.sankhya.dominio;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
+
+
 
 @Entity
-@Table(name="tb_filme")
 public class Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -19,6 +21,9 @@ public class Cliente implements Serializable{
 	private String	cpf;
 	private Date nascimento;
 	private BigDecimal rendaMensal;
+	
+	@OneToMany(mappedBy="cliente")
+	private List<Contrato> contratos;
 	
 	public Cliente() {
 		

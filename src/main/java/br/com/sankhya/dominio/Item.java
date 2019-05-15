@@ -2,11 +2,22 @@ package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Item implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Integer codItem;
 	private Integer ordem;
+
+	@ManyToOne
+	@JoinColumn(name="pacote")
+	private Pacote pacote;
+	
+	@ManyToOne
+	@JoinColumn(name="passeio")
+	private Passeio passeio;
 	
 	public Item() {
 		super();

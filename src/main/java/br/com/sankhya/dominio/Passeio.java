@@ -2,6 +2,9 @@ package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
+
+import javax.persistence.OneToMany;
 
 public class Passeio implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -10,6 +13,9 @@ public class Passeio implements Serializable{
 	private String nome;
 	private BigDecimal preco;
 	private String cidade;
+	
+	@OneToMany(mappedBy="passeio")
+	private List<Item> itens;
 	
 	public Passeio() {
 		

@@ -2,6 +2,9 @@ package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
+
+import javax.persistence.OneToMany;
 
 
 
@@ -13,6 +16,9 @@ public class Hotel implements Serializable{
 	private String nome;
 	private String cidade;
 	private BigDecimal diaria;
+	
+	@OneToMany(mappedBy="Hotel")
+	private List<Pacote> pacotes;
 	
 	public Hotel() {
 		
