@@ -1,39 +1,56 @@
+/*
+Nome do autor: Ilton Batista
+Data de criação do arquivo: 14/05/2019
+Resumo: Classe que representa um pacote com itens e um hotel oferecidos a um cliente
+Referência ao enunciado/origem do exercício: PDS1 – PROVA SIMULADA QUESTÃO 2
+*/
+
 package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="tb_pacote")
 public class Pacote implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codPacote;
 	private String nome;
 	private Integer diarias;
 
-	@OneToMany(mappedBy = "contrato")
-	private List<Contrato> contratos;
+	@OneToMany(mappedBy = "pacote")
+    private List<Contrato> contratos = new ArrayList<>();
 
 	@ManyToOne
 	private Hotel hotel;
 
-	@OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy="pacote")
 	private List<Item> itens;
 
 	public Pacote() {
-
+		contratos = new ArrayList<>();
 	}
-
-	public Pacote(Integer codPacote, String nome, Integer diarias) {
+	
+	public Pacote(Integer codPacote, String nome, Integer diarias, Hotel hotel) {
 		super();
 		this.codPacote = codPacote;
 		this.nome = nome;
 		this.diarias = diarias;
-		hotel.addPacote(this);
-		
+		this.hotel = hotel;
+        hotel.addPacote(this);
 	}
 
 	public Integer getCodPacote() {

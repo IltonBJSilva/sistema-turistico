@@ -1,19 +1,26 @@
+
 package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-
+import javax.persistence.Table;
 
 @Entity
+@Table(name="tb_cliente")
 public class Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codCliente;
 	private String nome;
 	private String email;
@@ -26,7 +33,7 @@ public class Cliente implements Serializable{
 	private List<Contrato> contratos;
 	
 	public Cliente() {
-		
+		contratos = new ArrayList<>();
 	}
 
 	public Cliente(Integer codCliente, String nome, String email, String telefone, String cpf, Date nascimento,
@@ -39,6 +46,7 @@ public class Cliente implements Serializable{
 		this.cpf = cpf;
 		this.nascimento = nascimento;
 		this.rendaMensal = rendaMensal;
+		contratos = new ArrayList<>();
 	}
 
 	public Integer getCodCliente() {

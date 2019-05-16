@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -13,6 +16,8 @@ import javax.persistence.Table;
 public class Contrato implements Serializable{
 private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codContrato;
 	private Date data;
 	
@@ -28,8 +33,6 @@ private static final long serialVersionUID = 1L;
 		
 	}
 	
-
-	
 	public Contrato(Integer codContrato, Date data, Cliente cliente, Pacote pacote) {
 		super();
 		this.codContrato = codContrato;
@@ -39,8 +42,6 @@ private static final long serialVersionUID = 1L;
 		this.pacote = pacote;
 		pacote.addContrato(this);
 	}
-
-
 
 	public Integer getCodContrato() {
 		return codContrato;
