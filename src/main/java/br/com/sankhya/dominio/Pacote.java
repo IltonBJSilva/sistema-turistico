@@ -9,7 +9,6 @@ package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -32,7 +31,7 @@ public class Pacote implements Serializable {
 	private Integer diarias;
 
 	@OneToMany(mappedBy = "pacote")
-    private List<Contrato> contratos = new ArrayList<>();
+    private List<Contrato> contratos;
 
 	@ManyToOne
 	private Hotel hotel;
@@ -41,7 +40,6 @@ public class Pacote implements Serializable {
 	private List<Item> itens;
 
 	public Pacote() {
-		contratos = new ArrayList<>();
 	}
 	
 	public Pacote(Integer codPacote, String nome, Integer diarias, Hotel hotel) {
@@ -50,7 +48,7 @@ public class Pacote implements Serializable {
 		this.nome = nome;
 		this.diarias = diarias;
 		this.hotel = hotel;
-        hotel.addPacote(this);
+		hotel.addPacote(this);
 	}
 
 	public Integer getCodPacote() {
@@ -119,18 +117,6 @@ public class Pacote implements Serializable {
 		this.itens.remove(x);
 	}
 	
-	public BigDecimal precoPasseios() {
-		return new BigDecimal(30);
-	}
-	
-	public BigDecimal precoTotal() {
-		BigDecimal resultado = new BigDecimal("0.00");
-		resultado = resultado.add(precoPasseios());
-		BigDecimal diarias = new BigDecimal(this.diarias);
-		resultado = resultado.add(diarias.multiply(hotel.getDiaria()));
-		return new BigDecimal(20);
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -160,4 +146,17 @@ public class Pacote implements Serializable {
 	public String toString() {
 		return "Pacote [codPacote=" + codPacote + ", nome=" + nome + ", diaria=" + diarias + "]";
 	}
+	
+	public BigDecimal precoPasseios() {
+		return new BigDecimal(30);
+	}
+	
+	public BigDecimal precoTotal() {
+		BigDecimal resultado = new BigDecimal("0.00");
+		resultado = resultado.add(precoPasseios());
+		BigDecimal diarias = new BigDecimal(this.diarias);
+		resultado = resultado.add(diarias.multiply(hotel.getDiaria()));
+		return new BigDecimal(20);
+	}
+	
 }

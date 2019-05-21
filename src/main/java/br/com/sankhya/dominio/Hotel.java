@@ -2,6 +2,7 @@ package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,11 +24,11 @@ public class Hotel implements Serializable{
 	private String cidade;
 	private BigDecimal diaria;
 	
-	@OneToMany(mappedBy="Hotel")
+	@OneToMany(mappedBy="hotel")
 	private List<Pacote> pacotes;
 	
 	public Hotel() {
-		
+		pacotes = new ArrayList<>();
 	}
 
 	public Hotel(Integer codHotel, String nome, String cidade, BigDecimal diaria) {
@@ -36,6 +37,7 @@ public class Hotel implements Serializable{
 		this.nome = nome;
 		this.cidade = cidade;
 		this.diaria = diaria;
+		pacotes = new ArrayList<>();
 	}
 
 

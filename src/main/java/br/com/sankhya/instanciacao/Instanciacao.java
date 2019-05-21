@@ -26,7 +26,9 @@ public class Instanciacao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+		
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -38,19 +40,22 @@ public class Instanciacao extends HttpServlet {
 
 			Pacote pacote1 = new Pacote(null,"Toperson",30,hotel1);
 			Pacote pacote2 = new Pacote(null,"Loperson",60,hotel2);
-
-			Contrato contrato1 = new Contrato(null,sdf.parse("14/03/2019"),cliente1, pacote1);
+			
+			/*Contrato contrato1 = new Contrato(null,sdf.parse("14/03/2019"),cliente1, pacote1);
 			Contrato contrato2 = new Contrato(null,sdf.parse("14/03/2018"),cliente2, pacote2);
 			
-			Passeio passeio1 = new Passeio(null,"Volta no park", new BigDecimal("100.00"),"Havai");
+			/*Passeio passeio1 = new Passeio(null,"Volta no park", new BigDecimal("100.00"),"Havai");
 			Passeio passeio2 = new Passeio(null,"Andar 100km", new BigDecimal("50.00"),"Dubai");
 
 			Item item1 = new Item(null,30,pacote1,passeio1);
-			Item item2 = new Item(null,90,pacote2,passeio2);
+			Item item2 = new Item(null,90,pacote2,passeio2);*/
 			
-			EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistema-turistico");
+			response.getWriter().append("AAAAAA");
+			
+			/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("turistico");
 			EntityManager em = emf.createEntityManager();
-			
+			response.getWriter().append("Funcinou");
+
 			em.getTransaction().begin();
 			
 			
@@ -74,14 +79,13 @@ public class Instanciacao extends HttpServlet {
 			
 			em.getTransaction().commit();
 			
-			response.getWriter().append("Dados persistidos");
 
 			em.close();
 			emf.close();
-			
+			response.getWriter().append("\nBanco de dados persistido");
+			*/
 			} catch(ParseException e) {
 				response.getWriter().append("Erro ao instanciar data. Instância não criada");
-			}
+			}				
 	}
-
 }
