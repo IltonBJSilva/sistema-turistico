@@ -1,7 +1,9 @@
+
 package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,8 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_passeio")
-public class Passeio implements Serializable{
+@Table(name="passeio")
+public class Passeio implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -24,12 +26,12 @@ public class Passeio implements Serializable{
 	private String cidade;
 	
 	@OneToMany(mappedBy="passeio")
-	private List<Item> itens;
+	private List<Item> itens = new ArrayList<>();
 	
 	public Passeio() {
 		
 	}
-	
+
 	public Passeio(Integer codPasseio, String nome, BigDecimal preco, String cidade) {
 		super();
 		this.codPasseio = codPasseio;
@@ -69,7 +71,7 @@ public class Passeio implements Serializable{
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-	
+
 	public List<Item> getItens() {
 		return itens;
 	}
@@ -116,7 +118,4 @@ public class Passeio implements Serializable{
 	public String toString() {
 		return "Passeio [codPasseio=" + codPasseio + ", nome=" + nome + ", preco=" + preco + ", cidade=" + cidade + "]";
 	}
-	
-	
-	
 }

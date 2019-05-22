@@ -1,5 +1,6 @@
-
 package br.com.sankhya.dominio;
+
+
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,27 +16,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_cliente")
-public class Cliente implements Serializable{
+@Table(name="cliente")
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codCliente;
 	private String nome;
 	private String email;
 	private String telefone;
-	private String	cpf;
+	private String cpf;
 	private Date nascimento;
 	private BigDecimal rendaMensal;
 	
 	@OneToMany(mappedBy="cliente")
-	private List<Contrato> contratos;
+	private List<Contrato> contratos = new ArrayList<>();
 	
 	public Cliente() {
-		contratos = new ArrayList<>();
+		
 	}
-
+	
 	public Cliente(Integer codCliente, String nome, String email, String telefone, String cpf, Date nascimento,
 			BigDecimal rendaMensal) {
 		super();
@@ -46,7 +47,6 @@ public class Cliente implements Serializable{
 		this.cpf = cpf;
 		this.nascimento = nascimento;
 		this.rendaMensal = rendaMensal;
-		contratos = new ArrayList<>();
 	}
 
 	public Integer getCodCliente() {
@@ -112,7 +112,7 @@ public class Cliente implements Serializable{
 	public void setContratos(List<Contrato> contratos) {
 		this.contratos = contratos;
 	}
-	
+
 	public void addContrato(Contrato x) {
 		this.contratos.add(x);
 		x.setCliente(this);

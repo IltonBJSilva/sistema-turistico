@@ -1,3 +1,4 @@
+
 package br.com.sankhya.dominio;
 
 import java.io.Serializable;
@@ -13,8 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_hotel")
-public class Hotel implements Serializable{
+@Table(name="hotel")
+public class Hotel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -25,10 +26,10 @@ public class Hotel implements Serializable{
 	private BigDecimal diaria;
 	
 	@OneToMany(mappedBy="hotel")
-	private List<Pacote> pacotes;
+	private List<Pacote> pacotes = new ArrayList<>();
 	
 	public Hotel() {
-		pacotes = new ArrayList<>();
+		
 	}
 
 	public Hotel(Integer codHotel, String nome, String cidade, BigDecimal diaria) {
@@ -37,10 +38,7 @@ public class Hotel implements Serializable{
 		this.nome = nome;
 		this.cidade = cidade;
 		this.diaria = diaria;
-		pacotes = new ArrayList<>();
 	}
-
-
 
 	public Integer getCodHotel() {
 		return codHotel;
@@ -73,7 +71,7 @@ public class Hotel implements Serializable{
 	public void setDiaria(BigDecimal diaria) {
 		this.diaria = diaria;
 	}
-	
+
 	public List<Pacote> getPacotes() {
 		return pacotes;
 	}
@@ -90,7 +88,6 @@ public class Hotel implements Serializable{
 	public void removePacote(Pacote x) {
 		this.pacotes.remove(x);
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -121,6 +118,4 @@ public class Hotel implements Serializable{
 	public String toString() {
 		return "Hotel [codHotel=" + codHotel + ", nome=" + nome + ", cidade=" + cidade + ", diaria=" + diaria + "]";
 	}
-	
-	
 }

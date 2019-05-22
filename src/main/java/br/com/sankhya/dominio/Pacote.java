@@ -1,47 +1,45 @@
-/*
-Nome do autor: Ilton Batista
-Data de criação do arquivo: 14/05/2019
-Resumo: Classe que representa um pacote com itens e um hotel oferecidos a um cliente
-Referência ao enunciado/origem do exercício: PDS1 – PROVA SIMULADA QUESTÃO 2
-*/
 
 package br.com.sankhya.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_pacote")
+@Table(name="pacote")
 public class Pacote implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codPacote;
 	private String nome;
 	private Integer diarias;
-
-	@OneToMany(mappedBy = "pacote")
-    private List<Contrato> contratos;
-
-	@ManyToOne
-	private Hotel hotel;
-
-    @OneToMany(mappedBy="pacote")
-	private List<Item> itens;
-
-	public Pacote() {
-	}
 	
+	@OneToMany(mappedBy="pacote")
+	private List<Contrato> contratos = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinColumn(name="hotel")
+	private Hotel hotel;
+	
+	@OneToMany(mappedBy="pacote")
+	private List<Item> itens = new ArrayList<>();
+	
+	public Pacote() {
+		
+	}
+
 	public Pacote(Integer codPacote, String nome, Integer diarias, Hotel hotel) {
 		super();
 		this.codPacote = codPacote;
@@ -67,14 +65,14 @@ public class Pacote implements Serializable {
 		this.nome = nome;
 	}
 
-	public Integer getDiaria() {
+	public Integer getDiarias() {
 		return diarias;
 	}
 
-	public void setDiaria(Integer diarias) {
+	public void setDiarias(Integer diarias) {
 		this.diarias = diarias;
 	}
-	
+
 	public List<Contrato> getContratos() {
 		return contratos;
 	}
@@ -82,7 +80,16 @@ public class Pacote implements Serializable {
 	public void setContratos(List<Contrato> contratos) {
 		this.contratos = contratos;
 	}
-
+	
+	public void addContrato(Contrato x) {
+		this.contratos.add(x);
+		x.setPacote(this);
+	}
+	
+	public void removeContrato(Contrato x) {
+		this.contratos.remove(x);
+	}
+	
 	public Hotel getHotel() {
 		return hotel;
 	}
@@ -99,15 +106,6 @@ public class Pacote implements Serializable {
 		this.itens = itens;
 	}
 	
-	public void addContrato(Contrato x) {
-		this.contratos.add(x);
-		x.setPacote(this);
-	}
-	
-	public void removeContrato(Contrato x) {
-		this.contratos.remove(x);
-	}
-	
 	public void addItem(Item x) {
 		this.itens.add(x);
 		x.setPacote(this);
@@ -116,7 +114,7 @@ public class Pacote implements Serializable {
 	public void removeItem(Item x) {
 		this.itens.remove(x);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -144,19 +142,24 @@ public class Pacote implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Pacote [codPacote=" + codPacote + ", nome=" + nome + ", diaria=" + diarias + "]";
+		return "Pacote [codPacote=" + codPacote + ", nome=" + nome + ", diarias=" + diarias + "]";
 	}
 	
+	// Mï¿½todo que calcula o preï¿½o total de todos os passeios
 	public BigDecimal precoPasseios() {
-		return new BigDecimal(30);
+		BigDecimal resultado = new BigDecimal("0.00");
+		for(Item item : itens) {
+			resultado = resultado.add(item.getPasseio().getPreco());
+		}
+		return resultado;
 	}
 	
+	// Mï¿½todo que calcula o preï¿½o total do pacote (incluindo os passeios)
 	public BigDecimal precoTotal() {
 		BigDecimal resultado = new BigDecimal("0.00");
 		resultado = resultado.add(precoPasseios());
 		BigDecimal diarias = new BigDecimal(this.diarias);
 		resultado = resultado.add(diarias.multiply(hotel.getDiaria()));
-		return new BigDecimal(20);
+		return resultado;
 	}
-	
 }

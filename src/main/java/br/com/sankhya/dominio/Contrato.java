@@ -1,5 +1,7 @@
 package br.com.sankhya.dominio;
 
+
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,10 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_Contrato")
-public class Contrato implements Serializable{
-private static final long serialVersionUID = 1L;
-
+@Table(name="contrato")
+public class Contrato implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codContrato;
@@ -29,10 +31,10 @@ private static final long serialVersionUID = 1L;
 	@JoinColumn(name="pacote")
 	private Pacote pacote;
 	
-	public Contrato() {
+	public Contrato(){
 		
 	}
-	
+
 	public Contrato(Integer codContrato, Date data, Cliente cliente, Pacote pacote) {
 		super();
 		this.codContrato = codContrato;
@@ -66,7 +68,7 @@ private static final long serialVersionUID = 1L;
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
+	
 	public Pacote getPacote() {
 		return pacote;
 	}
@@ -102,6 +104,6 @@ private static final long serialVersionUID = 1L;
 
 	@Override
 	public String toString() {
-		return "Cliente [codContrato=" + codContrato + ", data=" + data + "]";
-	}	
+		return "Contrato [codContrato=" + codContrato + ", data=" + data + "]";
+	}
 }

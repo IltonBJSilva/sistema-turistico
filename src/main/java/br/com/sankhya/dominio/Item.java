@@ -1,3 +1,4 @@
+
 package br.com.sankhya.dominio;
 
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_item")
+@Table(name="item")
 public class Item implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -19,7 +20,7 @@ public class Item implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codItem;
 	private Integer ordem;
-
+	
 	@ManyToOne
 	@JoinColumn(name="pacote")
 	private Pacote pacote;
@@ -29,11 +30,9 @@ public class Item implements Serializable{
 	private Passeio passeio;
 	
 	public Item() {
-		super();
+		
 	}
-
-
-
+	
 	public Item(Integer codItem, Integer ordem, Pacote pacote, Passeio passeio) {
 		super();
 		this.codItem = codItem;
@@ -43,8 +42,6 @@ public class Item implements Serializable{
 		this.passeio = passeio;
 		passeio.addItem(this);
 	}
-
-
 
 	public Integer getCodItem() {
 		return codItem;
@@ -61,7 +58,7 @@ public class Item implements Serializable{
 	public void setOrdem(Integer ordem) {
 		this.ordem = ordem;
 	}
-	
+
 	public Pacote getPacote() {
 		return pacote;
 	}
@@ -69,7 +66,7 @@ public class Item implements Serializable{
 	public void setPacote(Pacote pacote) {
 		this.pacote = pacote;
 	}
-
+	
 	public Passeio getPasseio() {
 		return passeio;
 	}

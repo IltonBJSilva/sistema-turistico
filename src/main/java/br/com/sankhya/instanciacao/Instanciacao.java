@@ -27,10 +27,9 @@ public class Instanciacao extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-		
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 			Cliente cliente1 = new Cliente(null,"Ilton","ilton@gmail.com","32234013","023303200329",sdf.parse("11/12/2001"),new BigDecimal("10.00"));
 			Cliente cliente2 = new Cliente(null,"Fabio","Lucio@gmail.com","32325023","094678200329",sdf.parse("11/12/2002"),new BigDecimal("50.00"));
@@ -38,21 +37,21 @@ public class Instanciacao extends HttpServlet {
 			Hotel hotel1 = new Hotel(null,"Hotel xian chan","Taokey", new BigDecimal("300.00"));
 			Hotel hotel2 = new Hotel(null,"Hotel chain vain","Laikan", new BigDecimal("100.00"));
 
+			Passeio passeio1 = new Passeio(null,"Volta no park", new BigDecimal("100.00"),"Havai");
+			Passeio passeio2 = new Passeio(null,"Andar 100km", new BigDecimal("50.00"),"Dubai");
+			
 			Pacote pacote1 = new Pacote(null,"Toperson",30,hotel1);
 			Pacote pacote2 = new Pacote(null,"Loperson",60,hotel2);
 			
-			/*Contrato contrato1 = new Contrato(null,sdf.parse("14/03/2019"),cliente1, pacote1);
-			Contrato contrato2 = new Contrato(null,sdf.parse("14/03/2018"),cliente2, pacote2);
-			
-			/*Passeio passeio1 = new Passeio(null,"Volta no park", new BigDecimal("100.00"),"Havai");
-			Passeio passeio2 = new Passeio(null,"Andar 100km", new BigDecimal("50.00"),"Dubai");
-
 			Item item1 = new Item(null,30,pacote1,passeio1);
-			Item item2 = new Item(null,90,pacote2,passeio2);*/
+			Item item2 = new Item(null,90,pacote2,passeio2);
+			
+			Contrato contrato1 = new Contrato(null,sdf.parse("14/03/2019"),cliente1, pacote1);
+			Contrato contrato2 = new Contrato(null,sdf.parse("14/03/2018"),cliente2, pacote2);
 			
 			response.getWriter().append("AAAAAA");
 			
-			/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("turistico");
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("turistico");
 			EntityManager em = emf.createEntityManager();
 			response.getWriter().append("Funcinou");
 
@@ -65,17 +64,19 @@ public class Instanciacao extends HttpServlet {
 			em.persist(hotel1);
 			em.persist(hotel2);
 
-			em.persist(pacote1);
-			em.persist(pacote2);
-
-			em.persist(contrato1);
-			em.persist(contrato2);
-			
 			em.persist(passeio1);
 			em.persist(passeio2);
 
+			em.persist(pacote1);
+			em.persist(pacote2);
+			
+			
 			em.persist(item1);
 			em.persist(item2);
+			
+			em.persist(contrato1);
+			em.persist(contrato2);
+			
 			
 			em.getTransaction().commit();
 			
@@ -83,7 +84,8 @@ public class Instanciacao extends HttpServlet {
 			em.close();
 			emf.close();
 			response.getWriter().append("\nBanco de dados persistido");
-			*/
+			
+			
 			} catch(ParseException e) {
 				response.getWriter().append("Erro ao instanciar data. Instância não criada");
 			}				
