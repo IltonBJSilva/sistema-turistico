@@ -1,3 +1,9 @@
+/* 
+ * Nome do autor: Ilton Batista da Silva Júnior 
+ * Data de criação do arquivo: 26/06/2019 
+ * Objetivo sucinto do programa: Cria Classe Passeio
+ * Referência ao enunciado/origem do exercício: Projeto de Pacotes Turísticos
+ */
 
 package br.com.sankhya.dominio;
 

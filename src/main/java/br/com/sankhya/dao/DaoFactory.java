@@ -1,17 +1,17 @@
 package br.com.sankhya.dao;
 
 import br.com.sankhya.dao.daoImpl.ClienteDaoImpl;
+import br.com.sankhya.dao.daoImpl.ContratoDaoImpl;
 import br.com.sankhya.dao.daoImpl.HotelDaoImpl;
 import br.com.sankhya.dao.daoImpl.ItemDaoImpl;
 import br.com.sankhya.dao.daoImpl.PacoteDaoImpl;
 import br.com.sankhya.dao.daoImpl.PasseioDaoImpl;
-import br.com.sankhya.dao.daoImpl.ServicoDaoImpl;
 
 
 public class DaoFactory {
 	
-	public static ServicoDao criarServicoDao() {
-		return new ServicoDaoImpl();
+	public static ContratoDao criarContratoDao() {
+		return new ContratoDaoImpl();
 	}
 	
 	public static HotelDao criarHotelDao() {

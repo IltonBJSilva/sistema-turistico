@@ -1,6 +1,11 @@
+/* 
+ * Nome do autor: Ilton Batista da Silva Júnior 
+ * Data de criação do arquivo: 26/06/2019 
+ * Objetivo sucinto do programa: Cria classe Contrato
+ * Referência ao enunciado/origem do exercício: Projeto de Pacotes Turísticos
+ */
+
 package br.com.sankhya.dominio;
-
-
 
 import java.io.Serializable;
 import java.util.Date;

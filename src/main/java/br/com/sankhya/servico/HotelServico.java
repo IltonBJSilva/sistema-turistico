@@ -1,5 +1,5 @@
 package br.com.sankhya.servico;
 
-public class HotelServiço {
+public class HotelServico {
 
 }

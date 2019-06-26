@@ -1,3 +1,10 @@
+/* 
+ * Nome do autor: Ilton Batista da Silva Júnior 
+ * Data de criação do arquivo: 26/06/2019 
+ * Objetivo sucinto do programa: Classe para realizar testes do programa
+ * Referência ao enunciado/origem do exercício: Projeto de Pacotes Turísticos
+ */
+
 package br.com.sankhya.instanciacao;
 
 import java.io.IOException;
