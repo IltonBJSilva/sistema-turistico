@@ -57,7 +57,6 @@ public class Instanciacao extends HttpServlet {
 
 			em.getTransaction().begin();
 			
-			
 			em.persist(cliente1);
 			em.persist(cliente2);
 			
@@ -70,21 +69,17 @@ public class Instanciacao extends HttpServlet {
 			em.persist(pacote1);
 			em.persist(pacote2);
 			
-			
 			em.persist(item1);
 			em.persist(item2);
 			
 			em.persist(contrato1);
 			em.persist(contrato2);
 			
-			
 			em.getTransaction().commit();
-			
 
 			em.close();
 			emf.close();
 			response.getWriter().append("\nBanco de dados persistido");
-			
 			
 			} catch(ParseException e) {
 				response.getWriter().append("Erro ao instanciar data. Instância não criada");

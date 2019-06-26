@@ -6,7 +6,6 @@
 	<persistence-unit name="turistico"
 		transaction-type="RESOURCE_LOCAL">
 		<non-jta-data-source>java:/comp/env/jdbc/datasource</non-jta-data-source>
-
 		<properties>
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
