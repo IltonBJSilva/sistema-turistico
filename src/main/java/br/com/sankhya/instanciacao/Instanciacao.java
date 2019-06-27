@@ -27,6 +27,13 @@ import br.com.sankhya.dominio.Hotel;
 import br.com.sankhya.dominio.Item;
 import br.com.sankhya.dominio.Pacote;
 import br.com.sankhya.dominio.Passeio;
+import br.com.sankhya.servico.ClienteServico;
+import br.com.sankhya.servico.ContratoServico;
+import br.com.sankhya.servico.HotelServico;
+import br.com.sankhya.servico.ItemServico;
+import br.com.sankhya.servico.PacoteServico;
+import br.com.sankhya.servico.PasseioServico;
+import br.com.sankhya.servico.ServicoException;
 
 @WebServlet("/Instanciacao")
 public class Instanciacao extends HttpServlet {
@@ -60,36 +67,25 @@ public class Instanciacao extends HttpServlet {
 			
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("turistico");
 			EntityManager em = emf.createEntityManager();
-			response.getWriter().append("Funcinou");
-
-			em.getTransaction().begin();
 			
-			em.persist(cliente1);
-			em.persist(cliente2);
+			ClienteServico clienteServico = new ClienteServico();
+			ContratoServico contratoServico = new ContratoServico();
+			HotelServico hotelServico = new HotelServico();
+			ItemServico itemServico = new ItemServico();
+			PacoteServico pacoteServico = new PacoteServico();
+			PasseioServico passeioServico = new PasseioServico();
 			
-			em.persist(hotel1);
-			em.persist(hotel2);
-
-			em.persist(passeio1);
-			em.persist(passeio2);
-
-			em.persist(pacote1);
-			em.persist(pacote2);
+			clienteServico.inserir(cliente1);
+			clienteServico.inserir(cliente2);
 			
-			em.persist(item1);
-			em.persist(item2);
 			
-			em.persist(contrato1);
-			em.persist(contrato2);
 			
-			em.getTransaction().commit();
-
-			em.close();
-			emf.close();
 			response.getWriter().append("\nBanco de dados persistido");
 			
 			} catch(ParseException e) {
 				response.getWriter().append("Erro ao instanciar data. Instância não criada");
-			}				
+			} catch (ServicoException e) {
+				response.getWriter().append("Erro! " + e.getMessage());
+			}	
 	}
 }
