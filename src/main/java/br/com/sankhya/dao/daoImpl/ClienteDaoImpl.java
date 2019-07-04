@@ -44,41 +44,4 @@ public class ClienteDaoImpl implements ClienteDao{
 		return query.getResultList();
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Cliente> buscarTodosOrdenadosPorNome() {
-		String jpql = "SELECT x FROM Cliente x";
-		Query query = em.createQuery(jpql);
-		return query.getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public Cliente buscaNomeExato(String nome) {
-		String jpql = "SELECT x FROM Cliente x WHERE x.nome = :p1";
-		Query query = em.createQuery(jpql);
-		query.setParameter("p1", nome);
-		List<Cliente> aux = query.getResultList();
-		return (aux.size() > 0) ? aux.get(0) : null;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public Cliente buscaNomeExatoDiferente(Integer codigo, String nome) {
-		String jpql = "SELECT x FROM Cliente x WHERE x.codArtista <> :p0 AND x.nome = :p1";
-		Query query = em.createQuery(jpql);
-		query.setParameter("p0", codigo);
-		query.setParameter("p1", nome);
-		List<Cliente> aux = query.getResultList();
-		return (aux.size() > 0) ? aux.get(0) : null;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Cliente> buscarPorNome(String trecho) {
-		String jpql = "SELECT x FROM Cliente x WHERE x.nome LIKE :p1";
-		Query query = em.createQuery(jpql);
-		query.setParameter("p1", "%"+trecho+"%");
-		return query.getResultList();
-	}
 }
