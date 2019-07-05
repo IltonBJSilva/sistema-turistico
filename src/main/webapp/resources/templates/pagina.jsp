@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -17,10 +17,10 @@
     <!-- Begin page content -->
     <div class="container">
       <div class="page-header">
-        <h1 style="color:black;">Página inicial da empresa Kougati inovando com você</h1>
+        <h1>Título da página</h1>
       </div>
-      <p class="lead" style="color: black;">Sistema turistico para você.</p>
-      <p style="color: black;">Kougati - <a href="https://youtube.com/MineDutyPlayer123" style="color: black;" target="_blank">youtube.com/Kougati</a></p>
+      <p class="lead">Texto grande</p>
+      <p>Texto menor</p>
     </div>
 
 	<jsp:include page="/resources/templates/rodape.jsp"></jsp:include>

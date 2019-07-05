@@ -62,12 +62,7 @@ public class Instanciacao extends HttpServlet {
 			
 			Contrato contrato1 = new Contrato(null,sdf.parse("14/03/2019"),cliente1, pacote1);
 			Contrato contrato2 = new Contrato(null,sdf.parse("14/03/2018"),cliente2, pacote2);
-			
-			response.getWriter().append("AAAAAA");
-			
-			EntityManagerFactory emf = Persistence.createEntityManagerFactory("turistico");
-			EntityManager em = emf.createEntityManager();
-			
+	
 			ClienteServico clienteServico = new ClienteServico();
 			ContratoServico contratoServico = new ContratoServico();
 			HotelServico hotelServico = new HotelServico();
@@ -75,9 +70,8 @@ public class Instanciacao extends HttpServlet {
 			PacoteServico pacoteServico = new PacoteServico();
 			PasseioServico passeioServico = new PasseioServico();
 			
-			clienteServico.inserir(cliente1);
-			clienteServico.inserir(cliente2);
-			
+			clienteServico.inserirAtualizar(cliente1);
+			clienteServico.inserirAtualizar(cliente2);
 			
 			
 			response.getWriter().append("\nBanco de dados persistido");
